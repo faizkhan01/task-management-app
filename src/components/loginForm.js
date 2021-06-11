@@ -33,20 +33,6 @@ const Login = () => {
         />
       </Form.Item>
       <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
-        />
-      </Form.Item>
-      <Form.Item
         name="password"
         rules={[
           {
@@ -59,21 +45,6 @@ const Login = () => {
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item
-        name="confirm password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password again!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Confirm Password"
         />
       </Form.Item>
       <Form.Item>
