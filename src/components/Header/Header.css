@@ -1,0 +1,27 @@
+header{
+    background: blueviolet;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.39);
+}
+header> nav{
+    display: flex;
+   
+}
+#head{
+    margin-left: 30px;
+    margin-top: -40px;
+    font-size: 40px;
+    color: cyan;
+}
+#home{
+    margin-left: 30px;
+    margin-top: -29px;
+    font-size: 20px;
+    color: cyan;
+}
