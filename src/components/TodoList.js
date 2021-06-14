@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import "./TodoList.css";
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
+const getTasks = () => {
+  let tasks = localStorage.getItem("todos");
+
+  if (tasks) {
+    return JSON.parse(localStorage.getItem("todos"));
+  } else {
+    return [];
+  }
+};
+
+function TodoList(props) {
+  const [todos, setTodos] = useState(getTasks());
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
@@ -47,13 +61,15 @@ function TodoList() {
     <>
       <div className="todo-app">
         <h1>What's the Plan for Today?</h1>
-        <TodoForm onSubmit={addTodo} />
+        <TodoForm onSubmit={addTodo}>
+          <h1> {props.time} </h1>
+        </TodoForm>
         <Todo
           todos={todos}
           completeTodo={completeTodo}
           removeTodo={removeTodo}
           updateTodo={updateTodo}
-        />
+        ></Todo>
       </div>
     </>
   );

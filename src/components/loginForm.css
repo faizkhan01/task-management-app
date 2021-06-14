@@ -1,7 +1,9 @@
 .login-form {
-    max-width: 300px;
-    padding: 10px;
     display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 2rem;
   }
   .login-form-forgot {
     float: right;
