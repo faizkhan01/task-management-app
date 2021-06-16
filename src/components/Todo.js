@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
-import { Modal, Button, Form, Input } from "antd";
+import { Modal, Button, Form, Input, Alert, Space } from "antd";
 import TodoList from "./TodoList";
 
 const { Item } = Form;
@@ -21,6 +21,7 @@ let getTaskFinishedTime = () => {
 
 const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   const [modal, setModal] = useState(false);
+  const [alert, setAlert] = useState(false);
   const [taskFinishedTime, setTaskFinishedTime] = useState(
     getTaskFinishedTime()
   );
@@ -44,6 +45,14 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   const action = () => {
     console.log(taskFinishedTime);
     closeModal();
+  };
+
+  const openAlert = () => {
+    setAlert(true);
+  };
+
+  const closeAlert = () => {
+    setAlert(false);
   };
 
   const handleChange = (e) => {
@@ -94,14 +103,37 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
         <Button onClick={openModal}>Task Time</Button>
       </div>
       <div className="icons">
-        <RiCloseCircleLine
-          onClick={() => removeTodo(todo.id)}
-          className="delete-icon"
-        />
+        <RiCloseCircleLine onClick={openAlert} className="delete-icon" />
+
         <TiEdit
           onClick={() => setEdit({ id: todo.id, value: todo.text })}
           className="edit-icon"
         />
+      </div>
+      <div>
+        {alert && (
+          <Alert
+            message="Alert"
+            description="Are you sure you want to delete this task??"
+            type="info"
+            action={
+              <Space direction="vertical">
+                <Button
+                  size="small"
+                  type="primary"
+                  onClick={() => removeTodo(todo.id)}
+                >
+                  Accept
+                </Button>
+
+                <Button size="small" danger type="ghost" onClick={closeAlert}>
+                  Decline
+                </Button>
+              </Space>
+            }
+            closable
+          />
+        )}
       </div>
     </div>
   ));

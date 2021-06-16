@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 // import Home from "./components/Home/Home";
 // import Registration from "./components/Registration";
 import loadingGif from "./Assets/loading.gif";
+import TaskAnalytics from "./components/TaskAnalytics/TaskAnalytics";
 
 const TodoList = lazy(() => import("./components/TodoList"));
 const Login = lazy(() => import("./components/loginForm"));
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route path="/todoList">
               <TodoList />
+            </Route>
+            <Route path="/taskAnalytics">
+              <TaskAnalytics />
             </Route>
           </Suspense>
         </Switch>

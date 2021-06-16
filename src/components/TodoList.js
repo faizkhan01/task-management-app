@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "antd";
+import { Link } from "react-router-dom";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import "./TodoList.css";
@@ -9,7 +11,14 @@ const getTasks = () => {
   if (tasks) {
     return JSON.parse(localStorage.getItem("todos"));
   } else {
-    return [];
+    return [
+      {
+        id: 0,
+        text: "",
+        isComplete: false,
+        time: 0,
+      },
+    ];
   }
 };
 
@@ -70,6 +79,9 @@ function TodoList(props) {
           removeTodo={removeTodo}
           updateTodo={updateTodo}
         ></Todo>
+        <Button type="primary">
+          <Link to="/taskAnalytics">Task Analytics</Link>
+        </Button>
       </div>
     </>
   );
